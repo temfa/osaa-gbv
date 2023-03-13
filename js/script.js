@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let newYear = year.getFullYear();
   let footer = document.getElementById("footer");
   let header = document.getElementById("header");
+  let topHeader = document.getElementById("top-header");
   let navbar = document.getElementById("navbarSupportedContent");
 
   header.innerHTML += `
@@ -37,6 +38,32 @@ window.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
     `;
+
+  topHeader.innerHTML += `
+            <div class="container">
+                <div class="row">
+                    <h1 class="text-capitalize text-white col-7"><i class="fas fa-book text-dark bg-white p-2 rounded-circle mr-3"></i>welcome to OSAA-GBV E-learning</h1>
+                    <!-- social icons -->
+                    <div class="social-icons text-right col-5">
+                    <ul class="list-unstyled">
+                        <li>
+                        <a href="#" class="fab fa-facebook-f icon-border facebook rounded-circle"> </a>
+                        </li>
+                        <li class="mx-2">
+                        <a href="#" class="fab fa-twitter icon-border twitter rounded-circle"> </a>
+                        </li>
+                        <li>
+                        <a href="#" class="fab fa-google-plus-g icon-border googleplus rounded-circle"> </a>
+                        </li>
+                        <li class="ml-2">
+                        <a href="#" class="fas fa-rss icon-border rss rounded-circle"> </a>
+                        </li>
+                    </ul>
+                    </div>
+                    <!-- //social icons -->
+                </div>
+            </div>
+`;
 
   footer.innerHTML += `
     <div>
@@ -120,7 +147,10 @@ window.addEventListener("DOMContentLoaded", () => {
               <li class="nav-item">
                 <a class="nav-link text-white" href="about.html">About Us</a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="courses.html">Courses</a>
+              </li>
+              <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Courses </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="language.html">Module 1</a>
@@ -135,7 +165,7 @@ window.addEventListener("DOMContentLoaded", () => {
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="photography.html">Module 6</a>
                 </div>
-              </li>
+              </li>-->
               <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Pages </a>
                 <div class="dropdown-menu">
@@ -165,8 +195,13 @@ window.addEventListener("DOMContentLoaded", () => {
   const listItem = document.querySelectorAll("li");
   const menuLength = menuItem.length;
   for (let i = 0; i < menuLength; i++) {
+    const menuSplit = menuItem[i].href.split("/");
     if (menuItem[i].href === currentLocation) {
-      listItem[i + 7].classList.add("active");
+      if (menuSplit[menuSplit.length - 1] === "index.html") {
+        listItem[i + 7].classList.add("active");
+      } else if (menuSplit[menuSplit.length - 1] === "courses.html") {
+        listItem[i - 2].classList.add("active");
+      }
     }
   }
 });
