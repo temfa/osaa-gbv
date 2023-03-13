@@ -1282,8 +1282,9 @@ h3.blog-title {
 }
 
 .categories ul li a,
-.single-left2-left ul li a {
+.single-left2-left ul li p {
   color: #555;
+  display: inline;
 }
 
 .categories ul li a:hover,

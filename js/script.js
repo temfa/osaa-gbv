@@ -202,6 +202,8 @@ window.addEventListener("DOMContentLoaded", () => {
       } else {
         listItem[i - 2].classList.add("active");
       }
+    } else {
+      listItem[6].classList.add("active");
     }
   }
 });
