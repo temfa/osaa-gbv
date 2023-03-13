@@ -226,7 +226,7 @@ a:hover {
 
 /* middle header */
 
-a.logo {
+p.logo {
   font-size: 48px;
   color: #ff3c00;
   line-height: 1;
@@ -565,7 +565,7 @@ h3.title:after {
   position: absolute;
   bottom: -2%;
   width: 100%;
-  right: 28%;
+  right: 2%;
 }
 
 .about-bottom ul li {
@@ -695,7 +695,7 @@ p.para-agileits-w3layouts i {
 }
 
 p.copy-right-grids a {
-  color: #4baaf6;
+  color: #ff3c00;
 }
 
 p.copy-right-grids a:hover {

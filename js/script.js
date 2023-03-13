@@ -1,7 +1,44 @@
 window.addEventListener("DOMContentLoaded", () => {
+  let year = new Date();
+  let newYear = year.getFullYear();
   let footer = document.getElementById("footer");
+  let header = document.getElementById("header");
+  let navbar = document.getElementById("navbarSupportedContent");
 
-  footer.innerHTML = `
+  header.innerHTML += `
+    <div class="container">
+          <div class="row">
+            <p class="logo font-italic font-weight-bold col-lg-4 text-lg-left text-center">OSAA-GBV</p>
+            <div class="col-lg-8 right-info-agiles mt-lg-0 mt-sm-3 mt-1">
+              <div class="row">
+                <div class="col-sm-5 nav-middle">
+                  <i class="far fa-envelope-open text-center mr-md-4 mr-sm-2 mr-4"></i>
+                  <div class="agile-addresmk">
+                    <p>
+                      <span class="font-weight-bold text-dark">Mail Us</span>
+                      <a href="mailto:info@osgbv.ondostate.gov.ng">info@osgbv.ondostate.gov.ng</a>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-sm-5 col-6 nav-middle mt-sm-0 mt-2">
+                  <i class="fas fa-phone-volume text-center mr-md-4 mr-sm-2 mr-4"></i>
+                  <div class="agile-addresmk">
+                    <p>
+                      <span class="font-weight-bold text-dark">Call Us</span>
+                      +234-8034345100
+                    </p>
+                  </div>
+                </div>
+                <div class="col-sm-2 col-6 top-login-butt text-right mt-sm-2">
+                  <a href="login.html" class="button-head-mow3 text-white">Login</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    `;
+
+  footer.innerHTML += `
     <div>
     <div class="container py-4">
         <div class="row py-xl-5 py-sm-3">
@@ -11,10 +48,10 @@ window.addEventListener("DOMContentLoaded", () => {
               <span class="font-weight-bold">directions</span>
             </h2>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.495758873587!2d-74.0005340845242!3d40.72911557933012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25991b7473067%3A0x59fbd02f7b519ce8!2s550+LaGuardia+Pl%2C+New+York%2C+NY+10012%2C+USA!5e0!3m2!1sen!2sin!4v1516166447283"></iframe>
+              src="https://www.google.com/maps/embed/v1/place?q=Oke+eda,+Akure,+Nigeria&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
             <div class="conta-posi-w3ls p-4 rounded">
               <h5 class="text-white font-weight-bold mb-3">Address</h5>
-              <p>25095 Blue Ravine Rd, <span>Diamonds street,</span> California, USA</p>
+              <p>Old Sectariat <span> Oke-Eda Akure </span>, Ondo State</p>
             </div>
           </div>
           <div class="col-lg-6 contact-agileits-w3layouts mt-lg-0 mt-4">
@@ -32,12 +69,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 <button type="submit" class="btn btn-primary submit">Submit</button>
               </form>
             </div>
-            <p class="para-agileits-w3layouts text-white"><i class="fas fa-map-marker pr-3"></i>Old Sectariat Oke-Eda Akure, Ondo State/p>
+            <p class="para-agileits-w3layouts text-white"><i class="fas fa-map-marker pr-3"></i>Old Sectariat Oke-Eda Akure, Ondo State.</p>
             <p class="para-agileits-w3layouts text-white my-sm-3 my-2"><i class="fas fa-phone pr-3"></i>+234-8030419049</p>
             <p class="para-agileits-w3layouts text-white my-sm-3 my-2"><i class="fas fa-phone pr-3"></i>+234-8034345100</p>
             <p class="para-agileits-w3layouts">
               <i class="far fa-envelope-open pr-2"></i>
-              <a href="mailto:mail@example.com" class="text-white">info@osgbv.ondostate.gov.ng</a>
+              <a href="mailto:info@osgbv.ondostate.gov.ng" class="text-white">info@osgbv.ondostate.gov.ng</a>
             </p>
           </div>
         </div>
@@ -46,8 +83,8 @@ window.addEventListener("DOMContentLoaded", () => {
         <div class="container">
           <div class="row">
             <p class="col-lg-8 copy-right-grids text-white text-lg-left text-center mt-lg-1">
-              © 2018 Edulearn. All Rights Reserved | Design by
-              <a href="https://w3layouts.com/" target="_blank">W3layouts</a>
+              © ${newYear} Edulearn. All Rights Reserved | Design by
+              <a href="https://sita.ondostate.gov.ng/" target="_blank">SITA</a>
             </p>
             <!-- social icons -->
             <div class="social-icons text-lg-right text-center col-lg-4 mt-lg-0 mt-3">
@@ -71,4 +108,65 @@ window.addEventListener("DOMContentLoaded", () => {
       </div>
     </div>
     `;
+
+  navbar.innerHTML += `
+    <ul class="navbar-nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="index.html"
+                  >Home
+                  <!-- <span class="sr-only">(current)</span> -->
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Courses </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="language.html">Module 1</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="communication.html">Module 2</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="business.html">Module 3</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="software.html">Module 4</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="social_media.html">Module 5</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="photography.html">Module 6</a>
+                </div>
+              </li>
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Pages </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="about.html">Instructors</a>
+                  <a class="dropdown-item" href="index.html">What We Do</a>
+                  <a class="dropdown-item" href="login.html">Login</a>
+                  <a class="dropdown-item" href="register.html">Register</a>
+                  <a class="dropdown-item" href="404.html">404 Page</a>
+                  <a class="dropdown-item" href="coming_soon.html">Coming Soon</a>
+                  <a class="dropdown-item" href="form.html">Admission Form</a>
+                  <a class="dropdown-item" href="faq.html">Faq</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="blog.html">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="gallery.html">Gallery</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link text-white" href="contact.html">Contact Us</a>
+              </li>
+            </ul>
+`;
+  const currentLocation = location.href;
+  const menuItem = document.querySelectorAll("a");
+  const listItem = document.querySelectorAll("li");
+  const menuLength = menuItem.length;
+  for (let i = 0; i < menuLength; i++) {
+    if (menuItem[i].href === currentLocation) {
+      listItem[i + 7].classList.add("active");
+    }
+  }
 });
