@@ -199,7 +199,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (menuItem[i].href === currentLocation) {
       if (menuSplit[menuSplit.length - 1] === "index.html") {
         listItem[i + 7].classList.add("active");
-      } else if (menuSplit[menuSplit.length - 1] === "courses.html") {
+      } else {
         listItem[i - 2].classList.add("active");
       }
     }
