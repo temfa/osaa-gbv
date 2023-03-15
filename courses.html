@@ -158,7 +158,7 @@
             <img src="images/am3.jpg" alt="" class="img-fluid" />
           </div>
           <div class="buttons-w3ls">
-            <button class="btn button-cour-w3ls text-white" href="module3.html" role="button">Start Learning</button>
+            <button class="btn button-cour-w3ls text-white" id="module3" role="button">Start Learning</button>
             <!-- <a class="btn bg-dark text-white" href="form.html" role="button">Apply Now</a> -->
           </div>
         </div>
@@ -200,7 +200,7 @@
             <img src="images/n2.jpg" alt="" class="img-fluid" />
           </div>
           <div class="buttons-w3ls">
-            <button class="btn button-cour-w3ls text-white" href="module5.html" role="button">Start Learning</button>
+            <button class="btn button-cour-w3ls text-white" id="module5" role="button">Start Learning</button>
             <!-- <a class="btn bg-dark text-white" href="form.html" role="button">Apply Now</a> -->
           </div>
         </div>
@@ -222,7 +222,7 @@
             </div>
           </div>
           <div class="buttons-w3ls-2">
-            <button class="btn button-cour-w3ls text-white" href="module6.html" role="button">Start Learning</button>
+            <button class="btn button-cour-w3ls text-white" id="module6" role="button">Start Learning</button>
             <!-- <a class="btn bg-dark text-white" href="form.html" role="button">Apply Now</a> -->
           </div>
         </div>
@@ -410,36 +410,6 @@
     </div> -->
     <!-- //course -->
 
-    <!-- brands -->
-    <!-- <div class="brands-w3ls py-md-5 py-4">
-      <div class="container py-xl-3">
-        <ul class="list-unstyled">
-          <li>
-            <i class="fab fa-supple"></i>
-          </li>
-          <li>
-            <i class="fab fa-angrycreative"></i>
-          </li>
-          <li>
-            <i class="fab fa-aviato"></i>
-          </li>
-          <li>
-            <i class="fab fa-aws"></i>
-          </li>
-          <li>
-            <i class="fab fa-cpanel"></i>
-          </li>
-          <li>
-            <i class="fab fa-hooli"></i>
-          </li>
-          <li>
-            <i class="fab fa-node"></i>
-          </li>
-        </ul>
-      </div>
-    </div> -->
-    <!-- //brands -->
-
     <!-- footer -->
     <footer id="footer"></footer>
     <!-- //footer -->
@@ -451,6 +421,10 @@
       let users = JSON.parse(window.sessionStorage.getItem("user"));
       let module1 = document.getElementById("module1");
       let module2 = document.getElementById("module2");
+      let module3 = document.getElementById("module3");
+      let module4 = document.getElementById("module4");
+      let module5 = document.getElementById("module5");
+      let module6 = document.getElementById("module6");
 
       module1.addEventListener("click", () => {
         if (token !== null) {
@@ -462,10 +436,68 @@
 
       module2.addEventListener("click", () => {
         if (token !== null) {
-          if (users.module1 < 50) {
-            alert("You scored less than 50% in module 1");
+          if (users.module1 === 0) {
+            alert("You have to complete Module 1 first");
+          } else if (users.module1 < 50) {
+            alert("You scored less than 50% in module 1!!!Take it again");
           } else {
             window.location.href = "module2.html";
+          }
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+
+      module3.addEventListener("click", () => {
+        if (token !== null) {
+          if (users.module2 === 0) {
+            alert("You have to complete Module 2 first");
+          } else if (users.module2 < 50) {
+            alert("You scored less than 50% in module 2!!!Take it again");
+          } else {
+            window.location.href = "module3.html";
+          }
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+
+      module4.addEventListener("click", () => {
+        if (token !== null) {
+          if (users.module3 === 0) {
+            alert("You have to complete module 3 first");
+          } else if (users.module3 < 50) {
+            alert("You scored less than 50% in module 3!!! Take it again");
+          } else {
+            window.location.href = "module4.html";
+          }
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+
+      module5.addEventListener("click", () => {
+        if (token !== null) {
+          if (users.module4 === 0) {
+            alert("You have to complete Module 4 first");
+          } else if (users.module4 < 50) {
+            alert("You scored less than 50% in module 4!!! Take it again");
+          } else {
+            window.location.href = "module5.html";
+          }
+        } else {
+          window.location.href = "login.html";
+        }
+      });
+
+      module6.addEventListener("click", () => {
+        if (token !== null) {
+          if (users.module5 === 0) {
+            alert("You have to complete Module 5 first");
+          } else if (users.module5 < 50) {
+            alert("You scored less than 50% in module 5!!! Take it again");
+          } else {
+            window.location.href = "module6.html";
           }
         } else {
           window.location.href = "login.html";

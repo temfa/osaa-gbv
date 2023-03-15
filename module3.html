@@ -605,7 +605,7 @@
     <script src="js/jquery-2.2.3.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/check.js"></script>
-    <script>
+    <script type="module">
       const quiz = [
         {
           question: "The following are vulnerable children except:",
@@ -635,6 +635,23 @@
           correct: "Good parenting",
         },
       ];
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDHzVV8RamHhjgbyofIQorBoS6UWgBucTk",
+        authDomain: "osaa-gbv.firebaseapp.com",
+        projectId: "osaa-gbv",
+        storageBucket: "osaa-gbv.appspot.com",
+        messagingSenderId: "880792047435",
+        appId: "1:880792047435:web:a370e0e414cd879d96e2ce",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      import { getDatabase, ref, set, child, get, update, remove } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
       let quizContainer = document.getElementById("quiz-container");
       let start = document.getElementById("start");
       let prev = document.getElementById("prev");
@@ -642,6 +659,7 @@
       let submit = document.getElementById("submit");
       let count = 0;
       let score = 0;
+      const realdb = getDatabase();
 
       start.addEventListener("click", () => {
         window.scrollTo(0, 1);
@@ -690,13 +708,24 @@
         if (answer === undefined) {
           alert("Pick an Answer");
         } else {
-          alert(`You are done with the test and your score is ${score}`);
+          alert(`You are done with the test and your score is ${score}%`);
           quizContainer.style.display = "none";
           count = 0;
           showQuiz();
           submit.style.display = "none";
           next.style.display = "block";
           prev.style.display = "none";
+          let user = JSON.parse(window.sessionStorage.getItem("user"));
+          let dbRef = ref(realdb);
+          Object.keys(user).forEach((item) => {
+            if (item === "module3") {
+              user[item] = score;
+              window.sessionStorage.setItem("user", JSON.stringify(user));
+              update(ref(realdb, "users/" + user.id), {
+                module3: score,
+              });
+            }
+          });
         }
       });
       prev.addEventListener("click", () => {
