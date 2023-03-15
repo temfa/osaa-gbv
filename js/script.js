@@ -5,6 +5,8 @@ window.addEventListener("DOMContentLoaded", () => {
   let header = document.getElementById("header");
   let topHeader = document.getElementById("top-header");
   let navbar = document.getElementById("navbarSupportedContent");
+  let user = window.sessionStorage.getItem("user");
+  let correctUser = JSON.parse(user);
 
   header.innerHTML += `
     <div class="container">
@@ -21,7 +23,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     </p>
                   </div>
                 </div>
-                <div class="col-sm-5 col-6 nav-middle mt-sm-0 mt-2">
+                <div class="col-sm-4 col-6 nav-middle mt-sm-0 mt-2">
                   <i class="fas fa-phone-volume text-center mr-md-4 mr-sm-2 mr-4"></i>
                   <div class="agile-addresmk">
                     <p>
@@ -30,8 +32,8 @@ window.addEventListener("DOMContentLoaded", () => {
                     </p>
                   </div>
                 </div>
-                <div class="col-sm-2 col-6 top-login-butt text-right mt-sm-2">
-                  <a href="login.html" class="button-head-mow3 text-white">Login</a>
+                <div class="col-sm-3 col-6 top-login-butt text-right mt-sm-2">
+                ${correctUser !== null ? `<p>${correctUser.fullName}</p>` : `<a href="login.html" class="button-head-mow3 text-white">Login</a>`}
                 </div>
               </div>
             </div>
@@ -110,7 +112,7 @@ window.addEventListener("DOMContentLoaded", () => {
         <div class="container">
           <div class="row">
             <p class="col-lg-8 copy-right-grids text-white text-lg-left text-center mt-lg-1">
-              © ${newYear} Edulearn. All Rights Reserved | Design by
+              © ${newYear} OSAA-GBV. All Rights Reserved | Design by
               <a href="https://sita.ondostate.gov.ng/" target="_blank">SITA</a>
             </p>
             <!-- social icons -->

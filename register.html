@@ -42,7 +42,7 @@
     <!-- header -->
     <header>
       <!-- top header -->
-      <div class="middle-w3ls-nav py-2" id="top-header"></div>
+      <div class="top-head-w3ls py-2 bg-dark" id="top-header"></div>
       <!-- //top header -->
       <!-- middle header -->
       <div class="middle-w3ls-nav py-2" id="header"></div>
@@ -91,20 +91,38 @@
         </h3>
         <!-- content -->
         <div class="sub-main-w3 pt-md-4">
-          <form action="#" method="post">
+          <form id="register-form">
             <div class="form-style-agile form-group">
               <label>
                 Your Name
                 <i class="fas fa-user"></i>
               </label>
-              <input placeholder="Your Name" class="form-control" name="Name" type="text" required="" />
+              <input placeholder="Your Name" class="form-control" name="fullName" type="text" id="fullName" required="" />
+              <small></small>
             </div>
             <div class="form-style-agile form-group">
               <label>
                 Email
                 <i class="fas fa-envelope"></i>
               </label>
-              <input placeholder="Email" class="form-control" name="Email" type="email" required="" />
+              <input placeholder="Email" class="form-control" name="Email" type="email" id="email" required="" />
+              <small></small>
+            </div>
+            <div class="form-style-agile form-group">
+              <label>
+                Organisation
+                <i class="fas fa-globe"></i>
+              </label>
+              <input placeholder="Organisation" class="form-control" name="organisation" id="organisation" type="text" required="" />
+              <small></small>
+            </div>
+            <div class="form-style-agile form-group">
+              <label>
+                Role in the Organisation
+                <i class="fas fa-globe"></i>
+              </label>
+              <input placeholder="Role in the Organisation" class="form-control" name="role" type="text" id="role" required="" />
+              <small></small>
             </div>
             <div class="form-style-agile form-group">
               <label>
@@ -112,6 +130,7 @@
                 <i class="fas fa-unlock-alt"></i>
               </label>
               <input placeholder="Password" class="form-control" name="Password" id="password1" type="password" required="" />
+              <small></small>
             </div>
             <div class="form-style-agile form-group">
               <label>
@@ -119,6 +138,7 @@
                 <i class="fas fa-unlock-alt"></i>
               </label>
               <input placeholder="Confirm Password" class="form-control" name="Confirm Password" id="password2" type="password" required="" />
+              <small></small>
             </div>
             <!-- switch -->
             <ul class="list-unstyled list-login">
@@ -138,36 +158,6 @@
       </div>
     </div>
     <!-- //register -->
-
-    <!-- brands -->
-    <div class="brands-w3ls py-md-5 py-4">
-      <div class="container py-xl-3">
-        <ul class="list-unstyled">
-          <li>
-            <i class="fab fa-supple"></i>
-          </li>
-          <li>
-            <i class="fab fa-angrycreative"></i>
-          </li>
-          <li>
-            <i class="fab fa-aviato"></i>
-          </li>
-          <li>
-            <i class="fab fa-aws"></i>
-          </li>
-          <li>
-            <i class="fab fa-cpanel"></i>
-          </li>
-          <li>
-            <i class="fab fa-hooli"></i>
-          </li>
-          <li>
-            <i class="fab fa-node"></i>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!-- //brands -->
 
     <!-- footer -->
     <footer id="footer"></footer>
@@ -194,6 +184,115 @@
         if (pass1 != pass2) document.getElementById("password2").setCustomValidity("Passwords Don't Match");
         else document.getElementById("password2").setCustomValidity("");
         //empty string means no validation error
+      }
+    </script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDHzVV8RamHhjgbyofIQorBoS6UWgBucTk",
+        authDomain: "osaa-gbv.firebaseapp.com",
+        projectId: "osaa-gbv",
+        storageBucket: "osaa-gbv.appspot.com",
+        messagingSenderId: "880792047435",
+        appId: "1:880792047435:web:a370e0e414cd879d96e2ce",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const authentication = getAuth();
+      import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+      import { getDatabase, ref, set, child, get, update, remove } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+      let fullName = document.getElementById("fullName");
+      let email = document.getElementById("email");
+      let organisation = document.getElementById("organisation");
+      let role = document.getElementById("role");
+      let password1 = document.getElementById("password1");
+      let password2 = document.getElementById("password2");
+      const realdb = getDatabase();
+
+      let register = document.getElementById("register-form");
+      register.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!validation()) {
+          alert("Error");
+        } else {
+          registerProcess();
+        }
+      });
+
+      const validation = () => {
+        let productRegex = /^[0-9]+$/;
+        if (fullName.value === "") {
+          setErrorFor(fullName, "Full name cannot be empty");
+        } else if (productRegex.test(fullName.value)) {
+          setErrorFor(fullName, "Full Name can only be alphabelt");
+        }
+        if (organisation.value === "") {
+          setErrorFor(organisation, "Full name cannot be empty");
+        } else if (productRegex.test(organisation.value)) {
+          setErrorFor(organisation, "Full Name can only be alphabelt");
+        }
+        if (role.value === "") {
+          setErrorFor(role, "Full name cannot be empty");
+        } else if (productRegex.test(role.value)) {
+          setErrorFor(role, "Full Name can only be alphabelt");
+        }
+        return true;
+      };
+      const clearInputs = () => {
+        fullName.value = "";
+        email.value = "";
+        organisation.value = "";
+        role.value = "";
+        password1.value = "";
+        password2.value = "";
+      };
+
+      const registerProcess = (e) => {
+        createUserWithEmailAndPassword(authentication, email.value, password1.value)
+          .then((response) => {
+            console.log(response);
+            // sessionStorage.setItem("Auth Token", response._tokenResponse.refreshToken);
+            set(ref(realdb, "users/" + response.user.uid), {
+              fullName: fullName.value,
+              email: email.value,
+              organisation: organisation.value,
+              role: role.value,
+              password1: password1.value,
+              module1: 0,
+              module2: 0,
+              module3: 0,
+              module4: 0,
+              module5: 0,
+              module6: 0,
+            });
+            clearInputs();
+            alert("Created Successfully");
+            window.scrollTo(0, 1);
+            // window.location.href = "login.html";
+          })
+          .catch((error) => {
+            console.log(error);
+            if (error.code === "auth/email-already-in-use") {
+              alert("Email Already in Use");
+            }
+            if (error.code === "auth/weak-password") {
+              alert("You have a weak password");
+            }
+          });
+      };
+
+      function setErrorFor(input, message) {
+        let forms = input.parentElement.parentElement;
+
+        forms.classList = "form-group error";
+        let small = forms.querySelector("small");
+        small.innerText = message;
       }
     </script>
     <!-- //password-script -->

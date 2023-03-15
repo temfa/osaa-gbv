@@ -91,30 +91,30 @@
         </h3>
         <!-- content -->
         <div class="sub-main-w3 pt-md-4">
-          <form action="#" method="post">
+          <form id="login-form">
             <div class="form-style-agile form-group">
               <label>
-                Username
+                Email
                 <i class="fas fa-user"></i>
               </label>
-              <input placeholder="Username" class="form-control" name="Name" type="text" required="" />
+              <input placeholder="Email" class="form-control" name="email" type="email" id="email" required="" />
             </div>
             <div class="form-style-agile form-group">
               <label>
                 Password
                 <i class="fas fa-unlock-alt"></i>
               </label>
-              <input placeholder="Password" class="form-control" name="Password" type="password" required="" />
+              <input placeholder="Password" class="form-control" name="Password" id="password" type="password" required="" />
             </div>
             <!-- switch -->
             <ul class="list-unstyled list-login">
-              <li class="switch-agileits float-left">
+              <!-- <li class="switch-agileits float-left">
                 <label class="switch text-capitalize">
                   <input type="checkbox" />
                   <span class="slider-switch round"></span>
                   keep me signed in
                 </label>
-              </li>
+              </li> -->
               <li class="float-right">
                 <a href="#" class="text-right text-white text-capitalize">forgot password?</a>
               </li>
@@ -133,33 +133,7 @@
     <!-- //login -->
 
     <!-- brands -->
-    <div class="brands-w3ls py-md-5 py-4">
-      <div class="container py-xl-3">
-        <ul class="list-unstyled">
-          <li>
-            <i class="fab fa-supple"></i>
-          </li>
-          <li>
-            <i class="fab fa-angrycreative"></i>
-          </li>
-          <li>
-            <i class="fab fa-aviato"></i>
-          </li>
-          <li>
-            <i class="fab fa-aws"></i>
-          </li>
-          <li>
-            <i class="fab fa-cpanel"></i>
-          </li>
-          <li>
-            <i class="fab fa-hooli"></i>
-          </li>
-          <li>
-            <i class="fab fa-node"></i>
-          </li>
-        </ul>
-      </div>
-    </div>
+
     <!-- //brands -->
 
     <!-- footer -->
@@ -168,6 +142,66 @@
 
     <!-- Js files -->
     <!-- JavaScript -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyDHzVV8RamHhjgbyofIQorBoS6UWgBucTk",
+        authDomain: "osaa-gbv.firebaseapp.com",
+        projectId: "osaa-gbv",
+        storageBucket: "osaa-gbv.appspot.com",
+        messagingSenderId: "880792047435",
+        appId: "1:880792047435:web:a370e0e414cd879d96e2ce",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const authentication = getAuth();
+      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+      import { getDatabase, ref, set, child, get, update, remove } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+      const realdb = getDatabase();
+      let email = document.getElementById("email");
+      let password = document.getElementById("password");
+      let data, tempData;
+
+      let login = document.getElementById("login-form");
+      login.addEventListener("submit", (e) => {
+        e.preventDefault();
+        loginProcess();
+      });
+      const clearInputs = () => {
+        email.value = "";
+        password.value = "";
+      };
+
+      const loginProcess = (e) => {
+        signInWithEmailAndPassword(authentication, email.value, password.value)
+          .then((response) => {
+            sessionStorage.setItem("Auth Token", response._tokenResponse.refreshToken);
+            const dbRef = ref(realdb);
+            get(child(dbRef, "users/")).then((snapshot) => {
+              if (snapshot.exists()) {
+                data = snapshot.val();
+                Object.entries(data).filter((e) => {
+                  if (e[1].email === email.value) {
+                    window.sessionStorage.setItem("user", JSON.stringify(e[1]));
+                    window.location.href = "courses.html";
+                    clearInputs();
+                  }
+                });
+              }
+            });
+          })
+          .catch((error) => {
+            console.log(error.code);
+            if (error.code === "auth/wrong-password") {
+              alert("Please check the Password");
+            }
+            if (error.code === "auth/user-not-found") {
+              alert("Please check the Email");
+            }
+          });
+      };
+    </script>
     <script src="js/jquery-2.2.3.min.js"></script>
     <script src="js/script.js"></script>
     <!-- Default-JavaScript-File -->

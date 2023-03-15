@@ -1072,8 +1072,8 @@ li.breadcrumb-item a {
   padding: 10px 20px;
 }
 
-.buttons-w3ls a.button-cour-w3ls,
-.buttons-w3ls-2 a.button-cour-w3ls {
+.buttons-w3ls button.button-cour-w3ls,
+.buttons-w3ls-2 button.button-cour-w3ls {
   background: #ff3c00;
 }
 
