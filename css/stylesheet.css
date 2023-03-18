@@ -93,6 +93,11 @@
   background-color: #21bf73;
 }
 @media (max-width: 576px) {
+  .quiz-container {
+    width: 85%;
+    left: 8%;
+  }
+
   .question {
     width: 100%;
     word-spacing: 2px;

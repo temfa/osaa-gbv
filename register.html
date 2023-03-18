@@ -272,23 +272,28 @@
               role: role.value,
               password1: password1.value,
               module1: 0,
-              module1Done: false,
+              module1Done: 0,
               module2: 0,
-              module2Done: false,
+              module2Done: 0,
               module3: 0,
-              module3Done: false,
+              module3Done: 0,
               module4: 0,
-              module4Done: false,
+              module4Done: 0,
               module5: 0,
-              module5Done: false,
+              module5Done: 0,
               module6: 0,
-              module6Done: false,
-            });
-            clearInputs();
-            alert("Created Successfully");
-            window.scrollTo(0, 1);
-            registerBtn.style.display = "block";
-            loader.style.display = "none";
+              module6Done: 0,
+            })
+              .then(() => {
+                clearInputs();
+                alert("Created Successfully");
+                window.scrollTo(0, 1);
+                registerBtn.style.display = "block";
+                loader.style.display = "none";
+              })
+              .catch((error) => {
+                alert("Something went wrong!!! Try again");
+              });
             //   window.location.href = "login.html";
           })
           .catch((error) => {

@@ -733,7 +733,11 @@
         if (answer === undefined) {
           alert("Pick an Answer");
         } else {
-          alert(`You are done with the test and your score is ${score}%`);
+          if (score < 50) {
+            alert("You scored less than 50%!! You have to retake the quiz");
+          } else {
+            alert(`You are done with the test and your score is ${score}%`);
+          }
           quizContainer.style.display = "none";
           count = 0;
           showQuiz();
@@ -742,21 +746,18 @@
           prev.style.display = "none";
           let user = JSON.parse(window.sessionStorage.getItem("user"));
           let dbRef = ref(realdb);
-          Object.keys(user).forEach((item) => {
-            if (item === "module2") {
-              user[item] = score;
-              if (item === "module2Done") {
-                user[item] = true;
-              }
-              window.sessionStorage.setItem("user", JSON.stringify(user));
-              update(ref(realdb, "users/" + user.id), {
-                module2: score,
-                module2Done: true,
-              });
-              window.localStorage.removeItem("score");
-              window.location.href = "courses.html";
+          user.module2 = score;
+          user.module2Done = 1;
+          window.sessionStorage.setItem("user", JSON.stringify(user));
+          update(ref(realdb, "users/" + user.id), {
+            module2: score,
+            module2Done: 1,
+          }).then(() => {
+            if (score >= 50) {
+              window.location.href = "module3.html";
             }
           });
+          window.localStorage.removeItem("score");
         }
       });
       prev.addEventListener("click", () => {

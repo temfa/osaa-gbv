@@ -676,7 +676,11 @@
         if (answer === undefined) {
           alert("Pick an Answer");
         } else {
-          alert(`You are done with the test and your score is ${score}%`);
+          if (score < 50) {
+            alert("You scored less than 50%!! You have to retake the quiz");
+          } else {
+            alert(`You are done with the test and your score is ${score}%`);
+          }
           quizContainer.style.display = "none";
           count = 0;
           showQuiz();
@@ -685,21 +689,18 @@
           prev.style.display = "none";
           let user = JSON.parse(window.sessionStorage.getItem("user"));
           let dbRef = ref(realdb);
-          Object.keys(user).forEach((item) => {
-            if (item === "module6") {
-              user[item] = score;
-              if (item === "module6Done") {
-                user[item] = true;
-              }
-              window.sessionStorage.setItem("user", JSON.stringify(user));
-              update(ref(realdb, "users/" + user.id), {
-                module6: score,
-                module6Done: true,
-              });
-              window.localStorage.removeItem("score");
+          user.module6 = score;
+          user.module6Done = 1;
+          window.sessionStorage.setItem("user", JSON.stringify(user));
+          update(ref(realdb, "users/" + user.id), {
+            module6: score,
+            module6Done: 1,
+          }).then(() => {
+            if (score >= 50) {
               window.location.href = "certificate.html";
             }
           });
+          window.localStorage.removeItem("score");
         }
       });
       prev.addEventListener("click", () => {
