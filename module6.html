@@ -688,11 +688,16 @@
           Object.keys(user).forEach((item) => {
             if (item === "module6") {
               user[item] = score;
+              if (item === "module6Done") {
+                user[item] = true;
+              }
               window.sessionStorage.setItem("user", JSON.stringify(user));
               update(ref(realdb, "users/" + user.id), {
                 module6: score,
+                module6Done: true,
               });
               window.localStorage.removeItem("score");
+              window.location.href = "certificate.html";
             }
           });
         }

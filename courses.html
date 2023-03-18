@@ -436,7 +436,7 @@
 
       module2.addEventListener("click", () => {
         if (token !== null) {
-          if (users.module1 === 0) {
+          if (users.module1Done === false) {
             alert("You have to complete Module 1 first");
           } else if (users.module1 < 50) {
             alert("You scored less than 50% in module 1!!!Take it again");
@@ -450,7 +450,7 @@
 
       module3.addEventListener("click", () => {
         if (token !== null) {
-          if (users.module2 === 0) {
+          if (users.module2Done === false) {
             alert("You have to complete Module 2 first");
           } else if (users.module2 < 50) {
             alert("You scored less than 50% in module 2!!!Take it again");
@@ -464,7 +464,7 @@
 
       module4.addEventListener("click", () => {
         if (token !== null) {
-          if (users.module3 === 0) {
+          if (users.module3Done === false) {
             alert("You have to complete module 3 first");
           } else if (users.module3 < 50) {
             alert("You scored less than 50% in module 3!!! Take it again");
@@ -478,7 +478,7 @@
 
       module5.addEventListener("click", () => {
         if (token !== null) {
-          if (users.module4 === 0) {
+          if (users.module4Done === false) {
             alert("You have to complete Module 4 first");
           } else if (users.module4 < 50) {
             alert("You scored less than 50% in module 4!!! Take it again");
@@ -492,7 +492,7 @@
 
       module6.addEventListener("click", () => {
         if (token !== null) {
-          if (users.module5 === 0) {
+          if (users.module5Done === false) {
             alert("You have to complete Module 5 first");
           } else if (users.module5 < 50) {
             alert("You scored less than 50% in module 5!!! Take it again");

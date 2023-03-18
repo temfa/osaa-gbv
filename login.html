@@ -120,7 +120,8 @@
               </li>
             </ul>
             <!-- //switch -->
-            <input type="submit" value="Log In" />
+            <input type="submit" value="Log In" id="login-btn" />
+            <div id="loader"></div>
             <p class="text-center dont-do mt-4 text-white">
               Don't have an account?
               <a href="register.html" class="text-white font-weight-bold"> Register Now</a>
@@ -164,8 +165,12 @@
       let data, tempData;
 
       let login = document.getElementById("login-form");
+      let loginBtn = document.getElementById("login-btn");
+      let loader = document.getElementById("loader");
       login.addEventListener("submit", (e) => {
         e.preventDefault();
+        loginBtn.style.display = "none";
+        loader.style.display = "block";
         loginProcess();
       });
       const clearInputs = () => {
@@ -186,6 +191,8 @@
                     window.sessionStorage.setItem("user", JSON.stringify(e[1]));
                     window.location.href = "courses.html";
                     clearInputs();
+                    loginBtn.style.display = "block";
+                    loader.style.display = "none";
                   }
                 });
               }
@@ -193,6 +200,8 @@
           })
           .catch((error) => {
             console.log(error.code);
+            loginBtn.style.display = "block";
+            loader.style.display = "none";
             if (error.code === "auth/wrong-password") {
               alert("Please check the Password");
             }

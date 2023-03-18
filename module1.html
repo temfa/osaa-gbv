@@ -904,11 +904,16 @@
           Object.keys(user).forEach((item) => {
             if (item === "module1") {
               user[item] = score;
+              if (item === "module1Done") {
+                user[item] = true;
+              }
               window.sessionStorage.setItem("user", JSON.stringify(user));
               update(ref(realdb, "users/" + user.id), {
                 module1: score,
+                module1Done: true,
               });
               window.localStorage.removeItem("score");
+              window.location.href = "courses.html";
             }
           });
         }

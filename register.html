@@ -141,7 +141,7 @@
               <small></small>
             </div>
             <!-- switch -->
-            <ul class="list-unstyled list-login">
+            <!-- <ul class="list-unstyled list-login">
               <li class="switch-agileits float-left">
                 <label class="switch text-capitalize">
                   <input type="checkbox" />
@@ -149,9 +149,10 @@
                   I Accept to the Terms & Conditions
                 </label>
               </li>
-            </ul>
+            </ul> -->
             <!-- //switch -->
-            <input type="submit" value="Register" />
+            <div id="loader"></div>
+            <input type="submit" value="Register" id="regsiter-btn" />
           </form>
         </div>
         <!-- //content -->
@@ -216,10 +217,16 @@
       const realdb = getDatabase();
 
       let register = document.getElementById("register-form");
+      let registerBtn = document.getElementById("register-btn");
+      let loader = document.getElementById("loader");
       register.addEventListener("submit", (e) => {
         e.preventDefault();
+        registerBtn.style.display = "none";
+        loader.style.display = "block";
         if (!validation()) {
           alert("Error");
+          registerBtn.style.display = "block";
+          loader.style.display = "none";
         } else {
           registerProcess();
         }
@@ -256,28 +263,38 @@
       const registerProcess = (e) => {
         createUserWithEmailAndPassword(authentication, email.value, password1.value)
           .then((response) => {
-            console.log(response);
             // sessionStorage.setItem("Auth Token", response._tokenResponse.refreshToken);
             set(ref(realdb, "users/" + response.user.uid), {
+              id: response.user.uid,
               fullName: fullName.value,
               email: email.value,
               organisation: organisation.value,
               role: role.value,
               password1: password1.value,
               module1: 0,
+              module1Done: false,
               module2: 0,
+              module2Done: false,
               module3: 0,
+              module3Done: false,
               module4: 0,
+              module4Done: false,
               module5: 0,
+              module5Done: false,
               module6: 0,
+              module6Done: false,
             });
             clearInputs();
             alert("Created Successfully");
             window.scrollTo(0, 1);
-            // window.location.href = "login.html";
+            registerBtn.style.display = "block";
+            loader.style.display = "none";
+            window.location.href = "login.html";
           })
           .catch((error) => {
             console.log(error);
+            registerBtn.style.display = "block";
+            loader.style.display = "none";
             if (error.code === "auth/email-already-in-use") {
               alert("Email Already in Use");
             }
