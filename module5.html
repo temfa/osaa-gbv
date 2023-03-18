@@ -714,6 +714,7 @@
               update(ref(realdb, "users/" + user.id), {
                 module5: score,
               });
+              window.localStorage.removeItem("score");
             }
           });
         }

@@ -908,6 +908,7 @@
               update(ref(realdb, "users/" + user.id), {
                 module1: score,
               });
+              window.localStorage.removeItem("score");
             }
           });
         }
