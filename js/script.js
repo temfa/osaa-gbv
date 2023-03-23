@@ -147,7 +147,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="about.html">About Us</a>
+                <a class="nav-link text-white" href="https://osgbv.ondostate.gov.ng/index.php/about/" target="_blank">About Us</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="courses.html">Courses</a>
@@ -201,6 +201,8 @@ window.addEventListener("DOMContentLoaded", () => {
     if (menuItem[i].href === currentLocation) {
       if (menuSplit[menuSplit.length - 1] === "index.html") {
         listItem[i + 7].classList.add("active");
+      } else if (menuSplit[menuSplit.length - 1] === "contact.html") {
+        listItem[i - 1].classList.add("active");
       } else {
         listItem[i - 2].classList.add("active");
       }

@@ -9,49 +9,71 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="container certificate-container">
-      <div class="outer-border-line">
-        <div class="inner-border-line">
-          <div class="certificate-body">
-            <h2 class="title cursive">Ondo State Agency Against Gender - Based Violence</h2>
-            <div class="certificate-wrapper">
-              <div class="pm-certificate-name margin-0">
-                <span class="pm-name-text bold" id="fullName"> </span>
-                <div class="underline"></div>
-              </div>
-              <div class="has-earned">
-                <p class="cursive pm-earned-text">on this day</p>
-                <p class="pm-credits-text" id="date"></p>
-              </div>
-              <div class="complete">
-                <p class="cursive">while completing the training course entitled</p>
-                <span class="pm-name-text bold" id="fullName"> Child protection and Safeguarding</span>
-                <div class="underline"></div>
-              </div>
-              <div class="signature">
-                <div class="sign">
+    <div class="cert-container">
+      <div class="container certificate-container" id="certificate">
+        <div class="outer-border-line">
+          <div class="inner-border-line">
+            <div class="certificate-body">
+              <h2 class="title">Ondo State Agency Against Gender - Based Violence</h2>
+              <div class="certificate-wrapper">
+                <div class="pm-certificate-name margin-0">
+                  <span class="pm-name-text bold" id="fullName"> </span>
                   <div class="underline"></div>
-                  <p>Barr. Victoria Bolanle Afolabi, AICMC</p>
-                  <span>Executive Secretary OSAA-GBv</span>
                 </div>
-                <div class="sign">
+                <div class="has-earned">
+                  <p class="pm-earned-text">on this day</p>
+                  <p class="pm-credits-text" id="date"></p>
+                </div>
+                <div class="complete">
+                  <p class="">while completing the training course entitled</p>
+                  <span class="pm-name-text bold" id="fullName"> Child protection and Safeguarding</span>
                   <div class="underline"></div>
-                  <p>Adebowale Olorunmola</p>
-                  <span>Country Director, WFD</span>
+                </div>
+                <div class="signature">
+                  <div class="sign">
+                    <img src="./images/bolanle.png" alt="" />
+                    <div class="underline"></div>
+                    <p>Barr. Victoria Bolanle Afolabi, AICMC</p>
+                    <span>Executive Secretary OSAA-GBv</span>
+                  </div>
+                  <div class="sign">
+                    <img src="./images/adebowale.png" alt="" />
+                    <div class="underline"></div>
+                    <p>Adebowale Olorunmola</p>
+                    <span>Country Director, WFD</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <p class="download">Click to <span id="download">download</span></p>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </div>
     <script>
       let year = new Date();
       let date = document.getElementById("date");
       let fullName = document.getElementById("fullName");
+      let download = document.getElementById("download");
       let users = JSON.parse(window.sessionStorage.getItem("user"));
       window.addEventListener("DOMContentLoaded", () => {
-        date.innerText = year;
+        download.addEventListener("click", () => {
+          window.jsPDF = window.jspdf.jsPDF;
+          var docPDF = new jsPDF();
+          var elementHTML = document.querySelector("#certificate");
+          docPDF.html(elementHTML, {
+            callback: function (docPDF) {
+              docPDF.save("Certificate.pdf");
+            },
+            x: 15,
+            y: 15,
+            width: 170,
+            windowWidth: 880,
+          });
+        });
+        date.innerText = year.toDateString();
         fullName.innerText = users.fullName;
       });
     </script>

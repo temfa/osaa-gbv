@@ -123,6 +123,8 @@
 }
 .pm-name-text {
   font-size: 20px;
+  margin-top: 20px;
+  display: block;
 }
 
 .pm-earned {
@@ -199,7 +201,7 @@
 
 .certificate-body .title {
   margin: 0px !important;
-  font-size: 33px !important;
+  font-size: 30px !important;
 }
 
 .certificate-wrapper {
@@ -217,4 +219,18 @@
 
 .sign {
   width: 45%;
+}
+
+.sign img {
+  width: 90%;
+}
+
+.download {
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.cert-container {
+  display: flex;
+  align-items: center;
 }
