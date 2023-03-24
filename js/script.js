@@ -100,7 +100,6 @@ window.addEventListener("DOMContentLoaded", () => {
             </div>
             <p class="para-agileits-w3layouts text-white"><i class="fas fa-map-marker pr-3"></i>Old Sectariat Oke-Eda Akure, Ondo State.</p>
             <p class="para-agileits-w3layouts text-white my-sm-3 my-2">Toll Free: 0800 100 1010</p>
-            <p class="para-agileits-w3layouts text-white my-sm-3 my-2"><i class="fas fa-phone pr-3"></i>+234-8034345100</p>
             <p class="para-agileits-w3layouts">
               <i class="far fa-envelope-open pr-2"></i>
               <a href="mailto:info@osgbv.ondostate.gov.ng" class="text-white">info@osgbv.ondostate.gov.ng</a>
@@ -211,3 +210,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+// <p class="para-agileits-w3layouts text-white my-sm-3 my-2">
+//   <i class="fas fa-phone pr-3"></i>+234-8034345100
+// </p>;
