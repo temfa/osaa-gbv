@@ -27,8 +27,8 @@ window.addEventListener("DOMContentLoaded", () => {
                   <i class="fas fa-phone-volume text-center mr-md-4 mr-sm-2 mr-4"></i>
                   <div class="agile-addresmk">
                     <p>
-                      <span class="font-weight-bold text-dark">Call Us</span>
-                      +234-8034345100
+                      <span class="font-weight-bold text-dark">Toll Free</span>
+                      0800 100 1010
                     </p>
                   </div>
                 </div>
@@ -99,7 +99,7 @@ window.addEventListener("DOMContentLoaded", () => {
               </form>
             </div>
             <p class="para-agileits-w3layouts text-white"><i class="fas fa-map-marker pr-3"></i>Old Sectariat Oke-Eda Akure, Ondo State.</p>
-            <p class="para-agileits-w3layouts text-white my-sm-3 my-2"><i class="fas fa-phone pr-3"></i>+234-8030419049</p>
+            <p class="para-agileits-w3layouts text-white my-sm-3 my-2">Toll Free: 0800 100 1010</p>
             <p class="para-agileits-w3layouts text-white my-sm-3 my-2"><i class="fas fa-phone pr-3"></i>+234-8034345100</p>
             <p class="para-agileits-w3layouts">
               <i class="far fa-envelope-open pr-2"></i>
